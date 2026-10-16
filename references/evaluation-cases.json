@@ -102,6 +102,42 @@
         "Answer CPM 12 in the supplied spend currency.",
         "Do not require creative retrieval, broad research or a report."
       ]
+    },
+    {
+      "id": "visible-argument",
+      "prompt": "Our reusable notebook has replaceable pages. We want a concept about keeping a familiar cover. Turn that into a brief without inventing customer evidence or environmental benefits.",
+      "rubric": [
+        "Distinguish the verified replaceable-page design from the inferred buying motivation.",
+        "Specify a concrete scene/action/text job that shows keeping the same cover.",
+        "Keep quantified impact and performance predictions unsupported unless evidenced."
+      ]
+    },
+    {
+      "id": "bounded-prototype",
+      "prompt": "Plan a four-variation video batch with an unfamiliar page-replacement animation. Do not generate yet. How would you avoid wasting production effort?",
+      "rubric": [
+        "Give an authorized planning-level check of the uncertain action using a representative scene/still/short clip.",
+        "Do not generate, buy tools or add an approval queue.",
+        "Preserve the requested four variations and reuse accepted work; do not automatically render every scene to test one action."
+      ]
+    },
+    {
+      "id": "resource-coverage",
+      "prompt": "The bank has all lesson transcripts. One lesson mentions a long script prompt, but the prompt document cannot be located. Can we claim the bank contains that prompt and use it?",
+      "rubric": [
+        "Distinguish transcript coverage from availability of the actual prompt/attachments.",
+        "Keep the mentioned resource unlocated and retain its locator.",
+        "Use a clearly labeled independent brief if useful, without inventing or copying a missing original."
+      ]
+    },
+    {
+      "id": "version-lineage",
+      "prompt": "We changed the scene and headline of a previously successful ad. It has not launched yet. Save the learning and tell us if the new version is a winner.",
+      "rubric": [
+        "Keep stable concept lineage with a distinct version/asset identity.",
+        "Do not transfer measured results or approval to the new treatment.",
+        "State proposed or inspected status and the comparison needed for a future outcome."
+      ]
     }
   ]
 }

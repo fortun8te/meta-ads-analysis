@@ -14,6 +14,14 @@ Use primary documentation for metric/platform behavior and actual research paper
 
 Keep private data local. Public research queries can describe a general methodological question; they should not contain private results, customer text, signed media URLs or credentials. Use existing authorized access for customer evidence, with question/thread context and source dates. A handful of comments does not establish prevalence or market-wide demand.
 
+## Know what the knowledge bank actually contains
+
+Search the existing topic/card index for the decision, then open only the matching original passage. Retain author/role, date, evidence type and conflicts. Distinguish a teaching, an example shown by a speaker, inspected screen/media evidence and an independently measured result.
+
+A complete transcript inventory does not establish complete attachment or prompt coverage. When a recommendation depends on a referenced document, exercise, screenshot or model recipe, check whether the actual item is available and inspected, only mentioned, inaccessible or outdated. Keep its original locator and current status in the existing source manifest or research note. A course summary is not a recovered prompt, and speech alone does not capture an unspoken interface demonstration. Use an independent brief when a template is unavailable; label the substitute and retrieve the original only through available authorized access.
+
+Reuse verified brand facts, bounded customer evidence, approved references and successful production recipes from their existing locations. Select the relevant slice for the current task, including its gaps and freshness. Do not copy a whole course, book or private dataset into every prompt, create a second knowledge database, or publish private source text to make a workflow portable.
+
 ## Learn without repeating work
 
 Maintain a compact ledger for useful findings:

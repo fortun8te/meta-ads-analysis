@@ -9,9 +9,9 @@ It works with an existing authorized connector or a supplied export. The include
 - Account, campaign, ad-set and ad analysis, with an optional hard boundary around the entity requested.
 - Native totals, parent/child reconciliation, weighted ratios and distinct missing/zero/suppressed states.
 - Attribution, reporting dates, conversion maturity, delivery constraints and alternative explanations.
-- Exact creative/copy/destination inspection, concept versus execution analysis and feasible tests.
+- Exact creative/copy/destination inspection, buying questions translated into visible arguments, concept versus execution analysis and feasible tests.
 - Optional lossless compact output, explicit field projections and arithmetic change decomposition.
-- Reuse of dated sources and unchanged media, with further reads chosen by the decision they could change.
+- Reuse of dated sources, unchanged media and verified production recipes, with explicit coverage for referenced documents and further reads chosen by the decision they could change.
 
 The entrypoint loads only the references needed for the current question. A metric lookup need not become a full audit or generated report.
 

@@ -37,20 +37,26 @@ Useful diagnostic hypotheses include changing an opening when the sales argument
 
 ## Build the next test
 
-Match the user's intent:
+Match the user's intent: a targeted fix preserves unaffected work; a controlled iteration isolates the chosen variable; concept exploration permits meaningful changes in motivation, story or execution within the brief. A concept test evaluates that bundle. There is no mandatory creative mix, variant count, refresh calendar or spend threshold.
 
-- A targeted fix preserves unaffected scene/copy/composition.
-- A controlled iteration changes the specified variable and holds the chosen comparator stable.
-- Broad concept exploration permits meaningful differences in motivation, action, information, viewpoint or story tension, subject to the brief's fixed elements.
+Extend the existing brief with the following decision details; do not create a parallel tracker:
 
-There is no mandatory 80/20 or 70/30 split, number of creatives, refresh calendar or universal winning format. Own-brand evidence is the default where the user wants account-led iteration. Use customer language only from actual attributed comments, reviews, quiz answers or research; retain sampling/date limits. Keep testimonials, expert roles and claims grounded in real evidence.
+1. **Observation and buying question.** Identify the exact source ads/window, outcome counts and the customer desire, situation or hesitation the idea addresses. Link customer evidence and its population/date, or label the buying rationale an inference. Keep self-reported experience separate from verified purchase identity. A useful desire-led concept need not invent an objection.
+2. **Supportable answer and creative job.** State what the product can truthfully show or say, then specify what the viewer must see, hear or understand. Assign the scene, line, demonstration or detail that job. Keep factual support separate from the hypothesis that communicating it will improve purchases. If support is unavailable, narrow the claim or choose another argument.
+3. **Concrete treatment and controls.** Name the actual scene/action, viewpoint, copy or story change, fixed elements and reference roles. For video/carousel, give each relevant beat a communication job and sequence/timing appropriate to the requested deliverable. Keep the full narrative available to production; decorative supporting footage cannot repair a missing explanation. Review the complete sequence as well as individual assets.
+4. **Useful comparison.** Record the current comparator, primary outcome, reporting/evaluation plan, feasible decision horizon and plausible alternative explanation. Distinguish supported, contradicted and inconclusive outcomes. Use the unchanged source/control for a diagnostic variation; meaningful concept differences remain bundled tests.
+5. **Cheapest relevant check.** When an unfamiliar production technique or difficult shot threatens time/cost, test the uncertain part using an existing asset, rough layout, representative still or short clip within the authorized scope. Say what must communicate correctly before multiplying that work. A planning request ends with a plan; a simple edit or already specified batch does not gain a compulsory prototype or approval gate. For expensive motion, inspect relevant still/character/voice inputs before animation when those choices remain unresolved. Fix failed components and reuse accepted ones.
 
-For each proposed test record:
+Use source-supported customer wording, testimonials and expert credentials; preserve sample/date and claim limits. Prioritize evidence, distinctness, feasibility and the actual business decision. Missing coverage alone does not make an idea worth testing. Proposed concepts are first picks to test, not measured winners. Generate assets only when requested through the current production route.
 
-1. The observation, exact source ads/window and outcome counts.
-2. The proposed mechanism and a plausible alternative explanation.
-3. The change, fixed elements and a concrete brief that makes the difference visible.
-4. Comparator, primary outcome and reporting/evaluation plan.
-5. What supported, unsupported and inconclusive outcomes would teach us.
+### Worked example: make the communication testable
 
-Prioritize decision value, evidence strength, distinctness, feasibility and current business objective. Missing coverage alone does not make an idea worthwhile. Keep predictions labelled first picks to test. Generate or edit assets only when requested and through the user's current production workflow. Record generated, inspected, approved, launched and performance-measured states separately.
+Synthetic example: the product specification verifies that a notebook's used pages can be replaced while its cover is retained. A prospective buyer asks what happens when the pages run out. The answer is the replaceable-page design; the creative job is to show a full insert being removed, a new one fitted, and the same cover continuing in use. A brief that merely says “test sustainability” leaves that job unresolved. Replacing an insert does not itself substantiate a quantified environmental benefit or prove the scene will sell better.
+
+For a video brief, sketch that short sequence before allocating an expensive animation batch if the page-change action is uncertain. For a static request, show the same idea in a readable still/layout instead. Preserve the request's count and format; do not turn a still request into video or create production artifacts for a concept-only task.
+
+### Carry the actual result forward
+
+Keep the stable concept/hypothesis lineage, plus separate version, asset and launched Ad IDs for each treatment. Record generated, inspected, approved, launched and measured states separately. Changed media must not inherit the source ad's measured result. A later outcome links to the tested version, scoped dates and comparator, including the strongest contrary evidence.
+
+When a recurring production defect has a verified remedy, add its model/version, affected task, failed attempt and successful alternative to the existing feedback record. Keep that remedy scoped and dated; a model limitation is not a timeless ban. Recheck it when the tool or task changes. Visual success establishes production feasibility, not advertising lift.

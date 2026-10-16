@@ -8,6 +8,16 @@ python3 <skill-folder>/scripts/analyze_meta.py <normalized-input.json> --mode me
 
 The default returns machine-readable JSON on stdout. Optional `--out <new-directory>` saves only analysis.json. It makes no account calls, network requests, media-file reads, HTML pages, reports or rankings. For in-process use import `analyze(payload, mode="metrics")`. The old review_pack.py name calls the same helper. Keep full working output local when large; read back only facts relevant to the decision.
 
+## Verdicts
+
+```text
+python3 <skill-folder>/scripts/decisions.py <normalized-input.json> --config client.json [--as-of YYYY-MM-DD]
+```
+
+`client.json`: `{"target_cpa": 25, "conversion_lag_days": 3, "min_spend": 25}` (lag and floor optional; floor defaults to 1× target CPA). Output per ad, sorted by spend: `verdict`, `reason`, `next_step`, raw `counts`, `low_volume`, CPA/ROAS/CTR, video `hook_rate`/`hold_rate`, `creative_review` (`deep` or `skip_low_spend`), own-history `fatigue`, `name_parts` for `CLIENT_concept_angle_hook_vN` names, and directional `angle_rollups`.
+
+Per-row analyzer flags: `low_volume`, `counts`, `attribution_mixed`, plus warnings for broken rows, unparseable values (excluded, never fatal; clean numeric strings like `"12"` are accepted) and missing purchase value.
+
 ## Source input
 
 Use schema_version 2, a context object and rows at any supported level. IDs must be exact strings; amounts/counts must be numeric values normalized from source units. Null means unavailable; zero means an explicit reported zero. A row context overrides shared context. Preserve raw responses and field mapping separately or in row provenance.

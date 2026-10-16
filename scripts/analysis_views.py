@@ -107,7 +107,7 @@ def focus_analysis(analysis, payload, fields, source_path=None, source_bytes=Non
                                                       'source_path', 'collected_at', 'created_time', 'updated_time', 'identity_status',
                                                       'dynamic_creative', 'edited_during_window', 'creative_coverage',
                                                       'effective_status', 'configured_status', 'status',
-                                                      'flags', 'creative_review_requested')}
+                                                      'flags', 'creative_review_requested', 'low_volume', 'counts', 'attribution_mixed')}
         values = {}
         for field in fields:
             group, key = field.split('.')

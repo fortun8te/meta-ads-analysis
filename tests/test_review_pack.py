@@ -133,11 +133,19 @@ class AnalysisTests(unittest.TestCase):
         self.assertEqual(r['derived_status']['purchase_roas'], 'unknown')
 
     def test_invalid_core_values(self):
-        for invalid in (True, -1, '50', float('inf'), float('nan'), [], {}, 10**1000):
+        for invalid in (float('inf'), float('nan')):
             p = fixture()
             p['rows'][0]['metrics']['spend'] = invalid
-            with self.subTest(value=str(invalid)[:30]), self.assertRaises(ValueError):
+            with self.subTest(value=str(invalid)), self.assertRaises(ValueError):
                 am.analyze(p)
+        # Bad values are flagged per row and excluded; one bad cell never aborts the run.
+        for invalid in (True, -1, 'twelve', [], {}, 10**1000):
+            p = fixture()
+            p['rows'][0]['metrics']['spend'] = invalid
+            with self.subTest(value=str(invalid)[:30]):
+                r = am.analyze(p)['rows'][0]
+                self.assertIsNone(r['metrics']['spend'])
+                self.assertTrue(any(w.startswith('Unparseable metric: spend') for w in r['warnings']))
 
     def test_status_validation_and_optional_unsupported(self):
         for status in ('unknown', 'suppressed', 'unsupported', 'failed'):

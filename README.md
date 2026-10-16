@@ -41,13 +41,15 @@ python3 scripts/analyze_meta.py examples/campaign.json --mode metrics
 python3 scripts/analysis_views.py examples/campaign.json --view compact
 python3 scripts/analysis_views.py examples/campaign.json --view focus --fields metrics.spend,metrics.purchases,derived_metrics.purchase_roas
 python3 scripts/analysis_views.py examples/change-drivers.json --view drivers
+echo '{"target_cpa": 25}' > /tmp/client.json
+python3 scripts/decisions.py examples/campaign.json --config /tmp/client.json
 ```
 
 Every bundled example is synthetic. `campaign.json` demonstrates a requested campaign boundary, native/child reconciliation and missing purchase values. `change-drivers.json` demonstrates continuing ads, entering/exiting delivery and provisional CPM decomposition. These are independent fixtures for different synthetic campaign IDs; do not join them into one campaign trend. The examples are not benchmarks or advertising recommendations.
 
 The input is a **normalized JSON packet**, not an arbitrary CSV or raw API response. Map source columns explicitly, preserve raw evidence separately, keep IDs as strings and supply source units/definitions. Coverage and finality flags are evidence assertions the tool cannot verify for you. See [input, outputs and guards](references/analysis-tool.md).
 
-Tools print JSON. Optional analyzer `--out <new-directory>` writes `analysis.json`; existing outputs require explicit `--force` and path-safety checks. Output can retain input provenance and private fields: keep real input/results outside this repository. `scripts/review_pack.py` is a compatibility alias for the analyzer.
+Tools print JSON. Optional analyzer `--out <new-directory>` writes `analysis.json`; existing outputs require explicit `--force` and path-safety checks. Output can retain input provenance and private fields: keep real input/results outside this repository. `scripts/review_pack.py` is a compatibility alias for the analyzer. `scripts/decisions.py` adds per-ad verdicts from a client config; `templates/` holds the `tests.csv` learning log and the client round summary.
 
 ## Validate changes
 

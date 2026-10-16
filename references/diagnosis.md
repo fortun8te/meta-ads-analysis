@@ -51,17 +51,13 @@ For a profitability or acquisition decision, identify the smallest missing comme
 
 When economics are unknown, provide the supported platform comparison and conditional next action. Do not manufacture a break-even target, profit claim or guaranteed return.
 
-## Pick a test that can teach us something
+## Make the call, then pick the test
 
-An apparent winner may depend on a few purchases, one large value or a favorable breakdown. Inspect concentration and comparable periods. Low recent delivery may justify a controlled retest rather than declaring an old idea exhausted. Observed historical ROAS does not establish marginal scaling return.
+Give every ad a verdict with `scripts/decisions.py` and the client config (`target_cpa`, `conversion_lag_days`, `min_spend`): wait, kill, scale or iterate with a reason code. Report the deciding number and raw counts beside it; low-volume rows (<10 purchases) are labelled, not hidden. Rows on a mixed attribution window get no verdict. Check that an apparent winner is not one large order or one favourable breakdown.
 
-Name the learning question before the variation. For an isolated feature test, preserve the story/copy/offer/destination and other chosen controls; replacing characters with a product shot changes more than visibility. For concept exploration, allow meaningful differences, and interpret the outcome as a bundle. Include a plausible benefit of the existing version before removing it. See `creative-and-tests.md` for creative inspection and source-ad versus new-variant evidence.
+Angle comparisons are directional: same ad set and window only, 2+ ads per angle (`angle_rollups`). Advantage+/CBO shifts budget toward winners, so cross-ad-set angle totals are confounded.
 
-Choose the output the user needs: an immediate delivery/allocation action, a diagnostic comparison, or a genuinely different creative direction. Do not let the easiest controlled variation displace requested concept work. Ground each new direction in a campaign observation, the buyer question it addresses and a concrete scene/story/format. Keep the existing ad as a control; novelty is not a substitute for a reason to buy. If examples resemble each other in story and buying question, collapse them into one direction.
-
-Check feasibility before proposing many cells. Use a verified baseline, realistic traffic/budget, a commercially useful effect and an appropriate independent unit. If a purchase test cannot distinguish a useful difference within the feasible budget/time, choose fewer variants, a larger meaningful contrast, more observation time, or a narrower diagnostic question. Click/LPV outcomes can answer that narrower question; they do not certify a sales winner. Do not add arbitrary purchase or spend thresholds.
-
-For formal inference, prespecify primary outcome, population, changed variables, randomization/assignment, duration/sample rationale and stopping method. Verify assignment and logging before evaluating lift. An eight-cell matrix is not itself randomized. Sample-ratio mismatch concerns eligible/assigned units under the design, not equal optimized ad spend. Keep ordinary ad comparisons observational; follow `metrics-and-evidence.md` for valid statistical methods.
+Name the learning question before the variation and change one level at a time (concept > angle > hook > execution). Keep the existing ad as control. Ground each fresh direction in a campaign observation and a concrete scene or story; collapse look-alike ideas. With small budgets, test fewer, bigger contrasts. See `creative-and-tests.md` for the checklist, fix mapping and `tests.csv` rows.
 
 ## Close the decision loop
 

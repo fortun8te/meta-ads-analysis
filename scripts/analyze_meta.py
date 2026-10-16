@@ -67,6 +67,16 @@ def numeric(value):
         return False
 
 
+def coerce(value):
+    """Accept clean numeric strings like "12" or "1,234.5"; leave everything else as supplied."""
+    if isinstance(value, str):
+        try:
+            return float(value.strip().replace(',', ''))
+        except ValueError:
+            return value
+    return value
+
+
 def window(context):
     if context.get('report_start') is None or context.get('report_end') is None:
         return None
@@ -414,17 +424,22 @@ def analyze(payload, mode=None, compare_periods=None):
         raw_metrics = row.get('metrics', {})
         if not isinstance(raw_metrics, dict):
             raise ValueError('metrics must be an object')
-        metrics = {key: raw_metrics.get(key) for key in CORE}
+        warnings = [f'Missing context: {key}' for key in REQUIRED if not present(context.get(key))]
+        metrics = {key: None for key in CORE}
+        # Clean numeric strings are coerced; anything unparseable is flagged and excluded, never fatal.
         # Scalar numeric extra metrics remain usable; structured source fields are preserved separately.
         for key, value in raw_metrics.items():
-            if key in CORE + OPTIONAL and not numeric(value):
-                raise ValueError(f'{row["entity_id"]}: {key} must be finite nonnegative numeric or null')
-            if key not in CORE and numeric(value):
+            if key in CORE + OPTIONAL:
+                value = coerce(value)
+                if not numeric(value):
+                    warnings.append(f'Unparseable metric: {key}={raw_metrics[key]!r}; excluded from calculations')
+                    value = None
+                metrics[key] = value
+            elif numeric(value):
                 metrics[key] = value
         status_map = row.get('metric_status', {})
         if not isinstance(status_map, dict):
             raise ValueError('metric_status must be an object')
-        warnings = [f'Missing context: {key}' for key in REQUIRED if not present(context.get(key))]
         for key, state in status_map.items():
             if state not in STATUSES or key not in set(metrics) | set(OPTIONAL):
                 raise ValueError(f'Invalid metric_status entry: {key}')
@@ -447,6 +462,16 @@ def analyze(payload, mode=None, compare_periods=None):
             warnings.append('Provisional reporting window; attribution may change')
         if metrics.get('reach') == 0 and metrics.get('impressions', 0):
             warnings.append('Positive impressions with zero reach; source consistency requires review')
+        spend, impressions, purchases = (metrics.get(k) for k in ('spend', 'impressions', 'purchases'))
+        if spend and impressions == 0:
+            warnings.append('Broken row: spend with zero impressions')
+        elif spend and all(metrics.get(k) is None for k in CORE if k != 'spend'):
+            warnings.append('Broken row: only spend supplied; delivery and results missing')
+        if purchases and metrics.get('purchase_value') is None:
+            warnings.append('Purchase value missing: purchase_roas unavailable')
+        low_volume = purchases is not None and purchases < 10
+        if low_volume and purchases and spend:
+            warnings.append(f'Low volume: {purchases:g} purchases on {spend:g} spend; ROAS/CPA are not a verdict')
         creative = row['level'] == 'ad' and (effective_mode == 'creative' or effective_mode == 'auto' and any(present(row.get(k)) for k in ('copy', 'media', 'creative_id', 'identity_status', 'dynamic_creative')))
         if creative:
             creative_flags(row, warnings)
@@ -461,7 +486,8 @@ def analyze(payload, mode=None, compare_periods=None):
         seen.add(identity)
         row.update(account_id=account_id, context=context, source_metrics=copy.deepcopy(raw_metrics),
                    metrics=metrics, metric_status=source_status, derived_metrics=values,
-                   derived_status=states, warnings=warnings, creative_review_requested=creative)
+                   derived_status=states, warnings=warnings, creative_review_requested=creative,
+                   low_volume=low_volume, counts={k: metrics.get(k) for k in ('spend', 'impressions', 'purchases', 'purchase_value')})
         if breakdown is not None:
             row['breakdown'] = copy.deepcopy(breakdown)
         key = (account_id, row['level'], row['entity_id'])
@@ -482,6 +508,14 @@ def analyze(payload, mode=None, compare_periods=None):
         flags.append('Mixed hierarchy levels retained separately; parent/child metrics must not be added together')
     if differing:
         flags.append('Comparison context differs across rows: ' + ', '.join(differing))
+    # Rows off the most common attribution window are flagged and excluded from comparative verdicts.
+    windows_used = [canonical(r['context'].get('attribution')) for r in rows]
+    common = max(set(windows_used), key=windows_used.count) if windows_used else None
+    tie = windows_used.count(common) * 2 <= len(windows_used) if common else False
+    for row, used in zip(rows, windows_used):
+        row['attribution_mixed'] = len(set(windows_used)) > 1 and (tie or used != common)
+        if row['attribution_mixed']:
+            row['warnings'].append(f'Mixed attribution: {row["context"].get("attribution")!r} differs from other rows; excluded from comparisons')
     result = {'schema_version': 2, 'input_schema_version': version, 'context': copy.deepcopy(payload['context']),
               'mode': effective_mode, 'rows': rows, 'flags': flags,
               'metric_definitions': {key: {'numerator': num, 'denominator': den, 'multiplier': mult, 'description': desc}

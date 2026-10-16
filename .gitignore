@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+.env
+.env.*
+.coverage
+htmlcov/
+# Keep private inputs/results outside the repository. These names are a backstop.
+local-data/
+local-results/

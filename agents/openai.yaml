@@ -1,0 +1,6 @@
+interface:
+  display_name: "Meta Ads Analysis"
+  short_description: "Review Meta results, diagnose changes and plan tests"
+  default_prompt: "Use $meta-ads-analysis to analyse the relevant Meta data and recommend the next action supported by the evidence."
+policy:
+  allow_implicit_invocation: true

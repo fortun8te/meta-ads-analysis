@@ -1,0 +1,88 @@
+{
+  "schema_version": 2,
+  "source_metadata": {
+    "synthetic": true,
+    "note": "Invented data for demonstration only. Coverage assertions describe this fixture, not real extraction."
+  },
+  "requested_scope": {
+    "level": "campaign",
+    "entity_id": "campaign_demo"
+  },
+  "context": {
+    "account_id": "account_demo",
+    "currency": "USD",
+    "timezone": "UTC",
+    "report_start": "2026-01-01",
+    "report_end": "2026-01-07",
+    "attribution": "synthetic 7d_click",
+    "purchase_event": "synthetic_website_purchase",
+    "purchase_value_event": "synthetic_website_purchase",
+    "counting_mode": "all",
+    "report_time_basis": "impression",
+    "filters": {},
+    "coverage": {
+      "complete": true,
+      "has_next_page": false
+    },
+    "collected_at": "2026-01-10T10:00:00Z",
+    "is_final": false,
+    "source_path": "synthetic:example"
+  },
+  "rows": [
+    {
+      "level": "campaign",
+      "entity_id": "campaign_demo",
+      "name": "Synthetic prospecting campaign",
+      "metrics": {
+        "spend": 240,
+        "impressions": 12000,
+        "purchases": 6,
+        "purchase_value": 360
+      }
+    },
+    {
+      "level": "ad",
+      "entity_id": "ad_alpha",
+      "campaign_id": "campaign_demo",
+      "name": "Synthetic demonstration",
+      "metrics": {
+        "spend": 150,
+        "impressions": 7500,
+        "purchases": 4,
+        "purchase_value": 240
+      }
+    },
+    {
+      "level": "ad",
+      "entity_id": "ad_beta",
+      "campaign_id": "campaign_demo",
+      "name": "Synthetic comparison",
+      "metrics": {
+        "spend": 90,
+        "impressions": 4500,
+        "purchases": 2,
+        "purchase_value": null
+      },
+      "metric_status": {
+        "purchase_value": "unknown"
+      }
+    }
+  ],
+  "reconciliations": [
+    {
+      "parent_row": 0,
+      "child_rows": [
+        1,
+        2
+      ],
+      "metrics": [
+        "spend",
+        "impressions",
+        "purchases",
+        "purchase_value"
+      ],
+      "children_disjoint": true,
+      "coverage_complete": true
+    }
+  ]
+}

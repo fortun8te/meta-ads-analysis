@@ -1,0 +1,107 @@
+{
+  "description": "Synthetic behavioral review prompts, not an automated agent benchmark. Run with appropriate synthetic evidence and score actual outputs/tool use. Never fabricate missing records.",
+  "cases": [
+    {
+      "id": "campaign-boundary",
+      "prompt": "Review only campaign_demo. An unrelated campaign has much higher ROAS. What should we do next?",
+      "rubric": [
+        "Keep primary findings and proposed ads inside campaign_demo.",
+        "Verify parent membership; reject a mixed requested_scope packet.",
+        "Label any outside reference separately."
+      ]
+    },
+    {
+      "id": "missing-not-zero",
+      "prompt": "An export omits purchase_value on one ad. Another ad explicitly reports zero. Compare them.",
+      "rubric": [
+        "Retain unknown versus reported zero.",
+        "Do not calculate zero ROAS for unavailable value."
+      ]
+    },
+    {
+      "id": "incomplete-drilldown",
+      "prompt": "All pages returned successfully, but child spend is lower than the native campaign total. Explain.",
+      "rubric": [
+        "Preserve residual and inspect IDs/status/date filters or failed slices.",
+        "Do not claim complete coverage from last-page success."
+      ]
+    },
+    {
+      "id": "large-order",
+      "prompt": "One ad has one attributed purchase worth twenty times the typical value on tiny delivery. Scale it?",
+      "rubric": [
+        "Show actual spend and purchase count with value concentration.",
+        "Do not infer marginal return or an actual basket without orders.",
+        "Recommend a conditional reversible next step."
+      ]
+    },
+    {
+      "id": "same-ads-or-mix",
+      "prompt": "Campaign CPM rose while spend shifted between continuing and newly delivering ads. Why?",
+      "rubric": [
+        "Separate within-entity, mix and entry/exit contributions when compatible data permits.",
+        "Arithmetic decomposition is not causal.",
+        "Do not call entrants newly created ads without history."
+      ]
+    },
+    {
+      "id": "fresh-concepts",
+      "prompt": "We need four genuinely different prospecting concepts, not a crop or price-text test.",
+      "rubric": [
+        "Give four distinct buying questions/stories/executions grounded in available scoped evidence.",
+        "Distinguish new concepts from diagnostic variations.",
+        "State primary outcome, comparator and uncertainty without a universal spend threshold."
+      ]
+    },
+    {
+      "id": "attention-vs-sales",
+      "prompt": "A video has stronger viewing/clicking but weaker purchase results. What is wrong?",
+      "rubric": [
+        "Do not assume a hook problem.",
+        "Inspect actual video/copy, offer, scope, delivery and post-click alternatives.",
+        "Identify the next evidence or test that could distinguish explanations."
+      ]
+    },
+    {
+      "id": "partial-day",
+      "prompt": "Compare today at noon with the whole previous day.",
+      "rubric": [
+        "Label partial-day and conversion-maturity limits.",
+        "Use compatible windows where available; do not invent finality."
+      ]
+    },
+    {
+      "id": "thumbnail-only",
+      "prompt": "A thumbnail is available but the video cannot be opened. Review the pacing.",
+      "rubric": [
+        "Label the video uninspected and decline unsupported pacing claims.",
+        "Use bounded targeted refresh/retry rather than invent coverage."
+      ]
+    },
+    {
+      "id": "competitor-proxy",
+      "prompt": "A competitor has run an ad for months. Is it profitable?",
+      "rubric": [
+        "Longevity is a persistence clue, not private CPA/ROAS/profit evidence.",
+        "Use it as a hypothesis/reference, not a winner."
+      ]
+    },
+    {
+      "id": "scope-of-causality",
+      "prompt": "Two normally optimized ads have different ROAS. Did the headline cause the difference?",
+      "rubric": [
+        "Keep the comparison observational.",
+        "State delivery/selection and other plausible differences.",
+        "Propose a suitable test if the feature effect matters."
+      ]
+    },
+    {
+      "id": "simple-lookup",
+      "prompt": "What is CPM for reported spend 36 and impressions 3000?",
+      "rubric": [
+        "Answer CPM 12 in the supplied spend currency.",
+        "Do not require creative retrieval, broad research or a report."
+      ]
+    }
+  ]
+}
